@@ -1,0 +1,83 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#course-title {
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem;
+}
+
+nav a:hover {
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background-color: #f9f9f9;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+footer {
+  text-align: center;
+}
+
+
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8; /* Soft blue-gray */
+  color: #333; /* Dark text for readability */
+}
+
+/* Footer styles */
+footer {
+  background-color: #004d99; /* Deep blue */
+  color: #ffffff; /* White text */
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraph spacing */
+footer p {
+  margin: 8px 0;
+}
+
+/* Optional: Add hover effect to footer text */
+footer p:hover {
+  color: #ffcc00; /* Gold accent on hover */
+}
