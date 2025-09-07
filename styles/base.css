@@ -41,6 +41,17 @@ main {
   padding: 1rem;
   background-color: #dbdcfc;
 }
+.card img {
+  float: left;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+
+.card p {
+  overflow: hidden;
+}
+
 
 img {
   max-width: 100%;
