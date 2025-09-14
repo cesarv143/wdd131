@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+    .grid-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  }
+
+  nav {
+    display: flex !important;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  #hamburger {
+    display: none;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  
+}
