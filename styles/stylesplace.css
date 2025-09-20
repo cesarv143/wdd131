@@ -1,0 +1,91 @@
+:root {
+  --primary-color: #006847; /* Mexican green */
+  --accent-color: #ce1126;  /* Mexican red */
+  --bg-color: #f4f4f4;
+  --text-color: #222;
+  --font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+section {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8x;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.weather-icon {
+  display: none;
+}
+
+.mobile-icon {
+  display: block;
+  width: 40px;
+  height: auto;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 599px) {
+  .grid-layout {
+    display: block;
+  }
+
+  .weather-icon {
+    display: none;
+  }
+
+  .mobile-icon {
+    display: block;
+  }
+}
+
+@media (min-width: 600px) {
+  .weather-icon {
+    display: inline;
+  }
+
+  .mobile-icon {
+    display: none;
+  }
+
+  .weather h2::after {
+    content: " ⛅";
+  }
+}
