@@ -12,25 +12,23 @@
     <h1>Mexico City</h1>
   </header>
 
-  <main class="grid-layout">
-    <section class="data">
+  <main class="full-hero">
+    <picture class="hero-bg">
+      <source srcset="images/bellas-artes.webp" media="(min-width: 600px)" />
+      <img src="images/angel-inde.webp" alt="Panoramic view of Mexico City" />
+    </picture>
+
+    <div class="floating-panel data-panel">
       <h2>Data</h2>
       <table>
         <tr><td>Population:</td><td>8.9 million</td></tr>
         <tr><td>Elevation:</td><td>2,240 m</td></tr>
-        <tr><td>Founded:</td><td>1325 (as Tenochtitlan)</td></tr>
+        <tr><td>Founded:</td><td>1325</td></tr>
         <tr><td>Language:</td><td>Spanish</td></tr>
       </table>
-    </section>
+    </div>
 
-    <section class="hero">
-      <picture>
-        <source srcset="images/bellas-artes.webp" media="(min-width: 600px)" />
-        <img src="images/angel-inde.webp" alt="Mexico City skyline" />
-      </picture>
-    </section>
-
-    <section class="weather">
+    <div class="floating-panel weather-panel">
       <h2>Weather <span class="weather-icon">⛅</span></h2>
       <img src="images/weather_clouds.svg" alt="Weather icon" class="mobile-icon" />
       <table>
@@ -38,7 +36,7 @@
         <tr><td>Wind Speed:</td><td><span id="wind">5 mph</span></td></tr>
         <tr><td>Wind Chill:</td><td><span id="windchill">Calculating...</span></td></tr>
       </table>
-    </section>
+    </div>
   </main>
 
   <footer>
