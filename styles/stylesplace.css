@@ -61,7 +61,7 @@ header, footer {
   bottom: -6px;
   width: 60px;
   height: 4px;
-  background-color: var(--accent-color); /* rojo bandera */
+  background-color: var(--accent-color); 
   border-radius: 2px;
 }
 
