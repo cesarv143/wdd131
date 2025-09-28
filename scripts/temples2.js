@@ -48,7 +48,7 @@ const temples = [
     area: 116642,
     imageUrl: "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
-  // Additional temples
+  
   {
     templeName: "Tijuana Mexico",
     location: "Tijuana, Mexico",
@@ -72,12 +72,12 @@ const temples = [
   }
 ];
 
-// Utility to extract year from dedicated date
+
 function getYear(dateStr) {
   return parseInt(dateStr.split(",")[0]);
 }
 
-// Display temple cards
+
 function displayTemples(templesArray) {
   const container = document.querySelector(".grid-container");
   container.innerHTML = "";
@@ -104,7 +104,7 @@ function displayTemples(templesArray) {
   });
 }
 
-// Filter logic
+
 function filterTemples(criteria) {
   let filtered = [];
 
@@ -128,7 +128,7 @@ function filterTemples(criteria) {
   displayTemples(filtered);
 }
 
-// Navigation menu event listeners
+// Navigation menu 
 document.querySelectorAll("#navMenu a").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
