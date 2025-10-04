@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Review Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/stylesform.css">
+</head>
+<body>
+  <header>
+    <h1 class="form-title">Product Review</h1>
+  </header>
+ <form method="get" action="review.html">
+    <!-- Product Name -->
+    <label for="product">Product Name:</label>
+    <select id="product" name="product" required>
+      <option value="" disabled selected>Select a Product ...</option>
+    </select>
+
+    <!-- Overall Rating -->
+    <fieldset>
+      <legend>Overall Rating:</legend>
+      <label><input type="radio" name="rating" value="1" required> ☆</label>
+      <label><input type="radio" name="rating" value="2"> ☆☆</label>
+      <label><input type="radio" name="rating" value="3"> ☆☆☆</label>
+      <label><input type="radio" name="rating" value="4"> ☆☆☆☆</label>
+      <label><input type="radio" name="rating" value="5"> ☆☆☆☆☆</label>
+    </fieldset>
+
+    <!-- Date of Installation -->
+    <label for="installDate">Date of Installation:</label>
+    <input type="date" id="installDate" name="installDate" required>
+
+    <!-- Useful Features -->
+    <fieldset>
+      <legend>Useful Features:</legend>
+      <label><input type="checkbox" id="feature1" name="features" value="durability"> Durability</label>
+      <label><input type="checkbox" id="feature2" name="features" value="design"> Design</label>
+      <label><input type="checkbox" id="feature3" name="features" value="efficiency"> Efficiency</label>
+    </fieldset>
+
+    <!-- Written Review -->
+    <label for="review">Written Review:</label>
+    <textarea id="review" name="review" rows="4" cols="40"></textarea>
+
+    <!-- User Name -->
+    <label for="username">Your Name:</label>
+    <input type="text" id="username" name="username">
+
+    <!-- Submit -->
+    <input type="submit" value="Submit Review">
+  </form>
+
+  <footer>
+    <p>&copy; <span id="year"></span> | Cesar Velasco, Mexico</p>
+    <p>Last Modified: <span id="lastModified"></span></p>
+  </footer>
+
+  <script src="scripts/scriptform.js"></script>
+</body>
+</html>
