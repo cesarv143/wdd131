@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Azcapotzalco Boxing Club – Site Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Azcapotzalco Boxing Club</h1>
+    <img src="logo.jpg" alt="Azcapotzalco Boxing Club Logo">
+    <p>This name reflects the club’s deep roots in the Azcapotzalco community and its mission to empower individuals through boxing and discipline.</p>
+  </header>
+
+  <section>
+    <h2>Site Purpose</h2>
+    <p>The website will serve as a digital hub for the Azcapotzalco Boxing Club, offering client registration, training schedules, attendance tracking, and motivational resources for members overcoming personal challenges.</p>
+  </section>
+
+  <section>
+    <h2>Scenarios</h2>
+    <ul>
+      <li>How can I register my child for boxing classes?</li>
+      <li>Where can I find the weekly training schedule and attendance history?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Color Schema</h2>
+    <ul>
+      <li><strong>Dark Red (#8B0000):</strong> Used for headers and accents to reflect strength and intensity.</li>
+      <li><strong>Light Gray (#F5F5F5):</strong> Used for background and body text to maintain readability and contrast.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Typography</h2>
+    <ul>
+      <li><strong>Oswald:</strong> Used for headings to convey boldness and clarity.</li>
+      <li><strong>Roboto:</strong> Used for body text for clean readability across devices.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Wireframe</h2>
+    <h3>Mobile View</h3>
+    <img src="Mobile view.JPG" alt="Mobile Wireframe" class="wireframe">
+    <h3>Desktop View</h3>
+    <img src="Desktop view.JPG" alt="Desktop Wireframe" class="wireframe">
+  </section>
+
+  <section>
+    <h2>Interactive Demo</h2>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name"><br>
+
+    <label for="age">Age:</label><br>
+    <input type="number" id="age"><br>
+
+    <label>Level:</label><br>
+    <input type="radio" name="level" value="beginner"> Beginner<br>
+    <input type="radio" name="level" value="intermediate"> Intermediate<br>
+    <input type="radio" name="level" value="advanced"> Advanced<br>
+
+    <button id="registerBtn">Register</button>
+    <div id="welcome"></div>
+
+    <button id="toggleTipsBtn">Show/Hide Training Tips</button>
+    <div id="trainingTips">Stay hydrated. Practice footwork daily. Respect your coach and teammates.</div>
+
+    <button id="gearBtn">Show Gear Recommendations</button>
+    <div id="gearList"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
