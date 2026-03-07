@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WDD 131-Dynamic Web Fundamentals- Cesar Velasco</title>
+<style>
+    header {
+      background-color: #004d99; 
+      color: white;
+      padding: 20px;
+      text-align: center;
+      
+    }
+
+    #course-title {
+      font-size: 1.8em;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      color: #ffcc00; 
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #201f1f;
+      text-decoration: underline;
+    }
+  </style>    
+
+  <meta name="description" content="WDD 131 - Dynamic Web Fundamentals. Cesar Velasco. Learn HTML, CSS, JS, and build dynamic web pages.">
+  <meta name="author" content="Cesar Velasco">
+  <link rel="stylesheet" href="styles/base.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="scripts/getdates.js" defer></script>
+</head>
+<body>
+  <header>
+    <span id="course-title">WDD 131 -Dynamic Web Fundamentals- Cesar Velasco</span>
+    <nav>
+      <a href="www.linkedin.com/in/cesar-velasco-a85b8327a">LinkedIn</a>
+      <a href="https://byupw.instructure.com/">Canvas</a>
+      <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/moro/10?lang=eng&id=p4#p4">Scripture</a>
+      <a href="#">Final Project</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Cesar Velasco</h1>
+    <section class="card">
+      <h2>About Me</h2>
+      <img src="images/ce.jpg" alt="Example Image 1" width="300">
+      <p>Born and raised in Mexico, Cesar Velasco brings both grit and grace to everything he does. By day, he works as a systems support specialist for a bank, solving technical challenges with precision and calm. By night—or whenever the gloves go on—he channels his energy into boxing, a sport that reflects his discipline, resilience, and drive. Whether he's troubleshooting a network issue or perfecting a jab-cross combo, Cesar thrives on focus, strategy, and growth.</p>
+    </section>
+    <section class="card">
+      <h2>Mexico</h2>
+      <img src="images/flag2.png" alt="Example Image 2" width="300">
+      <p>Mexico is a vibrant country located in North America, known for its rich cultural heritage and stunning geographic diversity. From the deserts of the north to the tropical jungles of the south, Mexico experiences a wide range of climates—dry, temperate, humid, and even alpine in its mountainous regions. Its cuisine is world-renowned, offering an incredible variety of flavors, ingredients, and regional specialties. Whether it's spicy tacos, savory mole, or fresh ceviche, Mexican food reflects the country's creativity, warmth, and deep-rooted traditions.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="currentyear"></span> Cesar Velasco, Mexico</p>
+    <p id="lastModified"></p>
+  </footer>
+</body>
+</html>
