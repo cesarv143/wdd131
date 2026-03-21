@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mexico City</title>
-  <link rel="stylesheet" href="styles/stylesplace.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="A comprehensive overview of Mexico City, featuring key statistics, historical data, and current weather conditions.">
+  <meta name="author" content="Cesar Velasco">
+  
+  <title>Mexico City - Statistics and Weather</title>
+  
+  <link rel="stylesheet" href="styles/stylesplace.css">
+  
   <script src="scripts/place.js" defer></script>
 </head>
 <body>
@@ -14,33 +20,54 @@
 
   <main class="full-hero">
     <picture class="hero-bg">
-      <source srcset="images/bellas-artes.webp" media="(min-width: 1000px)">
-    <source srcset="images/bellas-artes-medium.webp" media="(min-width: 600px)">
-    <img src="images/angel-inde.webp" alt="Panoramic view of Mexico City" width="400" height="600" loading="eager">
+      <source srcset="images/bellas-artes.webp" media="(min-width: 600px)">
+      <img src="images/angel-inde.webp" alt="Panoramic view of Mexico City featuring the Angel of Independence" width="1200" height="600" loading="eager">
+    </picture>
 
     <div class="floating-panel data-panel">
-      <h2>Data</h2>
+      <h2>City Data</h2>
       <table>
-        <tr><td>Population:</td><td>8.9 million</td></tr>
-        <tr><td>Elevation:</td><td>2,240 m</td></tr>
-        <tr><td>Founded:</td><td>1325</td></tr>
-        <tr><td>Language:</td><td>Spanish</td></tr>
+        <tr>
+          <td>Population:</td>
+          <td>8.9 million</td>
+        </tr>
+        <tr>
+          <td>Elevation:</td>
+          <td>2,240 m</td>
+        </tr>
+        <tr>
+          <td>Founded:</td>
+          <td>1325</td>
+        </tr>
+        <tr>
+          <td>Language:</td>
+          <td>Spanish</td>
+        </tr>
       </table>
     </div>
 
     <div class="floating-panel weather-panel">
-      <h2>Weather <span class="weather-icon">⛅</span></h2>
-      <img src="images/weather_clouds.svg" alt="Weather icon" class="mobile-icon" />
+      <h2>Weather <span class="weather-icon" aria-hidden="true">⛅</span></h2>
+      <img src="images/weather_clouds.svg" alt="Cloudy weather icon" class="mobile-icon">
       <table>
-        <tr><td>Temperature:</td><td><span id="temp">45°F</span></td></tr>
-        <tr><td>Wind Speed:</td><td><span id="wind">5 mph</span></td></tr>
-        <tr><td>Wind Chill:</td><td><span id="windchill">Calculating...</span></td></tr>
+        <tr>
+          <td>Temperature:</td>
+          <td><span id="temp">45°F</span></td>
+        </tr>
+        <tr>
+          <td>Wind Speed:</td>
+          <td><span id="wind">5 mph</span></td>
+        </tr>
+        <tr>
+          <td>Wind Chill:</td>
+          <td><span id="windchill">Calculating...</span></td>
+        </tr>
       </table>
     </div>
   </main>
 
   <footer>
-    <p>&copy; <span id="year"></span> Cesar Velasco – Mexico City</p>
+    <p>&copy; <span id="year"></span> Cesar Velasco | Mexico City</p>
     <p>Last Modified: <span id="lastModified"></span></p>
   </footer>
 </body>
