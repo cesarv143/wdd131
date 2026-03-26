@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site Planning document for the Azcapotzalco Boxing Club project.">
+    <meta name="author" content="Cesar Velasco">
+    <title>Site Plan | Azcapotzalco Boxing Club</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/siteplan.css">
+    <script src="scripts/siteplan.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="images/logo.jpg" alt="Azcapotzalco Boxing Club Logo" class="logo">
+            <h1>Azcapotzalco Boxing Club</h1>
+            <p class="tagline">Discipline • Strength • Community</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="site-name">
+            <h2>Site Name</h2>
+            <p><strong>Azcapotzalco Boxing Club:</strong> This name represents the club's deep roots in the local community and its mission to empower individuals through the art of boxing and mental discipline.</p>
+        </section>
+
+        <section id="purpose">
+            <h2>Site Purpose</h2>
+            <p>The website will serve as a digital hub for the club, providing a platform for member registration, training schedules, attendance tracking, and motivational resources for athletes of all levels.</p>
+        </section>
+
+        <section id="scenarios">
+            <h2>Target Audience Scenarios</h2>
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <p>"How can I register my child for the youth boxing program?"</p>
+                </div>
+                <div class="scenario-card">
+                    <p>"Where can I find the weekly training schedule and my attendance history?"</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="color-typography">
+            <h2>Design Palette</h2>
+            <div class="design-preview">
+                <div class="color-swatch main-red">#8B0000<br>Intensity Red</div>
+                <div class="color-swatch dark-gray">#222222<br>Coal Gray</div>
+                <div class="color-swatch light-gray">#F5F5F5<br>Canvas White</div>
+            </div>
+            <p><strong>Typography:</strong> Oswald (Headings) | Roboto (Body Text)</p>
+        </section>
+
+        <section id="interactive-demo">
+            <h2>Interactive Planning Demo</h2>
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" placeholder="Enter athlete name">
+                </div>
+                <div class="input-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" placeholder="Min. age 6">
+                </div>
+                
+                <fieldset>
+                    <legend>Training Level</legend>
+                    <label><input type="radio" name="level" value="beginner"> Beginner</label>
+                    <label><input type="radio" name="level" value="intermediate"> Intermediate</label>
+                    <label><input type="radio" name="level" value="advanced"> Advanced</label>
+                </fieldset>
+
+                <div class="button-group">
+                    <button id="registerBtn" class="btn-primary">Register Member</button>
+                    <button id="gearBtn" class="btn-secondary">Check Gear</button>
+                    <button id="toggleTipsBtn" class="btn-outline">Toggle Tips</button>
+                </div>
+            </div>
+
+            <div id="output-area">
+                <div id="welcome" class="message-box"></div>
+                <div id="gearList" class="gear-grid"></div>
+                <div id="trainingTips" class="tips-hidden">
+                    <p>👊 <strong>Coach's Tip:</strong> Stay hydrated, practice your footwork daily, and always respect your sparring partners.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> | Azcapotzalco Boxing Club Plan | Cesar Velasco</p>
+    </footer>
+</body>
+</html>
