@@ -1,8 +1,3 @@
-/**
- * Site Plan Script - Azcapotzalco Boxing Club
- * Demonstrates basic logic, LocalStorage, and DOM manipulation.
- */
-
 const registerAthlete = () => {
     const name = document.querySelector("#name").value.trim();
     const age = document.querySelector("#age").value.trim();
@@ -19,14 +14,14 @@ const registerAthlete = () => {
         level: level
     };
 
-    // Save to LocalStorage
+    
     localStorage.setItem("boxingAthlete", JSON.stringify(athleteAthlete));
     updateWelcomeMessage(athleteData);
 };
 
 const updateWelcomeMessage = (user) => {
     const display = document.querySelector("#welcome");
-    // Using Template Literals for dynamic output
+    
     display.innerHTML = `<p>👊 <strong>Welcome, ${user.name}!</strong> You are officially registered as a ${user.level} boxer.</p>`;
 };
 
@@ -45,7 +40,7 @@ const showGearList = () => {
         advanced: ["Custom Boxing Shoes", "Professional Gloves", "Speed Bag"]
     };
 
-    // Use .map() and join() to build the list
+    
     const items = gearMap[level].map(item => `<li>${item}</li>`).join("");
     gearListDiv.innerHTML = `<h3>Recommended Gear:</h3><ul>${items}</ul>`;
 };
@@ -56,18 +51,18 @@ const toggleTrainingTips = () => {
     tipsDiv.classList.toggle("tips-hidden");
 };
 
-// Initialize App
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Set current year in footer
+    
     document.querySelector("#currentYear").textContent = new Date().getFullYear();
 
-    // Check for saved data in LocalStorage
+    
     const savedData = localStorage.getItem("boxingAthlete");
     if (savedData) {
         updateWelcomeMessage(JSON.parse(savedData));
     }
 
-    // Event Listeners
+    
     document.querySelector("#registerBtn").addEventListener("click", registerAthlete);
     document.querySelector("#gearBtn").addEventListener("click", showGearList);
     document.querySelector("#toggleTipsBtn").addEventListener("click", toggleTrainingTips);

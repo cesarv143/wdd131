@@ -1,4 +1,4 @@
-/* Color Variables */
+
 :root {
     --blood-red: #8B0000;
     --coal-black: #222222;
@@ -7,7 +7,7 @@
     --text-dark: #333333;
 }
 
-/* Global Styles */
+
 body {
     background-color: var(--canvas-white);
     color: var(--text-dark);
@@ -54,7 +54,7 @@ section {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Design Palette Layout */
+
 .design-preview {
     display: flex;
     flex-wrap: wrap;
@@ -80,7 +80,7 @@ section {
 .dark-gray { background-color: var(--coal-black); }
 .light-gray { background-color: var(--canvas-white); color: var(--text-dark); border: 1px solid #ddd; }
 
-/* Interactive Form Styling */
+
 .form-container {
     background: #fdfdfd;
     padding: 2rem;
