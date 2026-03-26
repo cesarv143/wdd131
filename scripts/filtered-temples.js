@@ -53,96 +53,84 @@ const temples = [
     location: "Puebla, Mexico",
     dedicated: "2024, May, 19",
     area: 35890,
-    imageUrl: "https://www.churchofjesuschrist.org/imgs/7cc3d661445711eeb789eeeeac1ebb07936a29ec/full/320%2C/0/default"
+    imageUrl: "https://churchofjesuschristtemples.org/assets/img/temples/puebla-mexico-temple/puebla-mexico-temple-46342.jpg"
   },
   {
     templeName: "Sapporo Japan",
     location: "Sapporo, Hokkaido, Japan",
     dedicated: "2016, August, 21",
     area: 48480,
-    imageUrl: "https://www.churchofjesuschrist.org/imgs/38167823f98e09f583307561f6c43c7b3967919d/full/320%2C/0/default"
+    imageUrl: "https://churchofjesuschristtemples.org/assets/img/temples/sapporo-japan-temple/sapporo-japan-temple-3374.jpg"
   },
   {
     templeName: "Trujillo Peru",
     location: "Trujillo, Peru",
     dedicated: "2015, June, 21",
     area: 28200,
-    imageUrl: "https://www.churchofjesuschrist.org/imgs/7a79a61324706509a250764e4324f61e4b95d2c2/full/320%2C/0/default"
+    imageUrl: "https://churchofjesuschristtemples.org/assets/img/temples/trujillo-peru-temple/trujillo-peru-temple-3717.jpg"
   }
 ];
 
-const templeContainer = document.querySelector("#temple-cards");
+
+const container = document.querySelector("#temple-cards");
 const navMenu = document.querySelector("#navMenu");
-const mainHeading = document.querySelector("main h2");
+const title = document.querySelector("#display-title");
 
-function displayTemples(filteredTemples) {
 
-  templeContainer.innerHTML = "";
-
-  filteredTemples.forEach(temple => {
-    
-    const card = document.createElement("figure");
-    card.classList.add("temple-card");
-
-    card.innerHTML = `
+function displayTemples(list) {
+  container.innerHTML = ""; 
+  list.forEach(temple => {
+    const figure = document.createElement("figure");
+    figure.classList.add("temple-card");
+    figure.innerHTML = `
       <h3>${temple.templeName}</h3>
-      <div class="stats">
-        <p><span class="label">Location:</span> ${temple.location}</p>
-        <p><span class="label">Dedicated:</span> ${temple.dedicated}</p>
-        <p><span class="label">Area:</span> ${temple.area.toLocaleString()} sq ft</p>
-      </div>
-      <img src="${temple.imageUrl}" 
-           alt="${temple.templeName} Temple" 
-           loading="lazy" 
-           width="400" 
-           height="250">
+      <p><strong>Location:</strong> ${temple.location}</p>
+      <p><strong>Dedicated:</strong> ${temple.dedicated}</p>
+      <p><strong>Area:</strong> ${temple.area.toLocaleString()} sq ft</p>
+      <img src="${temple.imageUrl}" alt="${temple.templeName} Temple" loading="lazy" width="400" height="250">
     `;
-    
-    templeContainer.appendChild(card);
+    container.appendChild(figure);
   });
 }
 
 
-navMenu.addEventListener("click", (event) => {
-  if (event.target.tagName === "A") {
-    const filterId = event.target.id;
-    let filteredList = [];
+navMenu.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
+    e.preventDefault();
+    const id = e.target.id;
+    let filtered = [];
 
-    switch (filterId) {
+    switch (id) {
       case "old":
-        mainHeading.textContent = "Old Temples";
-        filteredList = temples.filter(t => parseInt(t.dedicated.split(",")[0]) < 1900);
+        title.textContent = "Old Temples";
+        filtered = temples.filter(t => parseInt(t.dedicated.split(",")[0]) < 1900);
         break;
       case "new":
-        mainHeading.textContent = "New Temples";
-        filteredList = temples.filter(t => parseInt(t.dedicated.split(",")[0]) > 2000);
+        title.textContent = "New Temples";
+        filtered = temples.filter(t => parseInt(t.dedicated.split(",")[0]) > 2000);
         break;
       case "large":
-        mainHeading.textContent = "Large Temples";
-        filteredList = temples.filter(t => t.area > 90000);
+        title.textContent = "Large Temples";
+        filtered = temples.filter(t => t.area > 90000);
         break;
       case "small":
-        mainHeading.textContent = "Small Temples";
-        filteredList = temples.filter(t => t.area < 10000);
+        title.textContent = "Small Temples";
+        filtered = temples.filter(t => t.area < 10000);
         break;
-      case "home":
       default:
-        mainHeading.textContent = "Home";
-        filteredList = temples;
-        break;
+        title.textContent = "Home";
+        filtered = temples;
     }
-
-    displayTemples(filteredList);
+    displayTemples(filtered);
   }
 });
 
-const hamburger = document.querySelector("#hamburger");
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("open");
-  hamburger.classList.toggle("active");
-});
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 document.querySelector("#lastModified").textContent = document.lastModified;
+
+const hb = document.querySelector("#hamburger");
+hb.addEventListener("click", () => navMenu.classList.toggle("open"));
+
 
 displayTemples(temples);
