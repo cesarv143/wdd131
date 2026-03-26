@@ -1,0 +1,74 @@
+:root {
+    --blood-red: #8B0000;
+    --coal-black: #222222;
+    --canvas-white: #F5F5F5;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--canvas-white);
+    padding: 20px;
+}
+
+header {
+    background-color: var(--coal-black);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 5px solid var(--blood-red);
+    margin-bottom: 2rem;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--coal-black);
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="date"], select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: var(--blood-red);
+    color: white;
+    padding: 15px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #600;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: #666;
+}
