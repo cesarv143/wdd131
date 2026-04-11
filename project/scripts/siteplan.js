@@ -1,69 +1,39 @@
-const registerAthlete = () => {
-    const name = document.querySelector("#name").value.trim();
-    const age = document.querySelector("#age").value.trim();
-    const level = document.querySelector("input[name='level']:checked")?.value;
-
-    if (!name || !age || !level) {
-        alert("Please fill out all fields before registering.");
-        return;
-    }
-
-    const athleteData = {
-        name: name,
-        age: parseInt(age),
-        level: level
-    };
-
-    
-    localStorage.setItem("boxingAthlete", JSON.stringify(athleteAthlete));
-    updateWelcomeMessage(athleteData);
-};
-
-const updateWelcomeMessage = (user) => {
-    const display = document.querySelector("#welcome");
-    
-    display.innerHTML = `<p>👊 <strong>Welcome, ${user.name}!</strong> You are officially registered as a ${user.level} boxer.</p>`;
-};
-
-const showGearList = () => {
-    const level = document.querySelector("input[name='level']:checked")?.value;
-    const gearListDiv = document.querySelector("#gearList");
-    
-    if (!level) {
-        alert("Please select a training level to see recommendations.");
-        return;
-    }
-
-    const gearMap = {
-        beginner: ["Hand wraps", "12oz Training Gloves", "Jump rope"],
-        intermediate: ["Mouthguard", "Headgear", "Sparring Gloves"],
-        advanced: ["Custom Boxing Shoes", "Professional Gloves", "Speed Bag"]
-    };
-
-    
-    const items = gearMap[level].map(item => `<li>${item}</li>`).join("");
-    gearListDiv.innerHTML = `<h3>Recommended Gear:</h3><ul>${items}</ul>`;
-};
-
-const toggleTrainingTips = () => {
-    const tipsDiv = document.querySelector("#trainingTips");
-    tipsDiv.classList.toggle("tips-visible");
-    tipsDiv.classList.toggle("tips-hidden");
-};
-
-
+const gymPrograms = [
+    { name: "Youth Boxing", schedule: "Mon-Wed-Fri at 4:00 PM", level: "Beginner" },
+    { name: "Advanced Sparring", schedule: "Tue-Thu at 6:00 PM", level: "Advanced" },
+    { name: "Conditioning", schedule: "Saturdays at 9:00 AM", level: "All Levels" }
+];
 document.addEventListener("DOMContentLoaded", () => {
+    const yearSpan = document.querySelector("#currentYear");
+    const modSpan = document.querySelector("#lastModified");
     
-    document.querySelector("#currentYear").textContent = new Date().getFullYear();
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+    if (modSpan) modSpan.textContent = `Last Modified: ${document.lastModified}`;
 
-    
-    const savedData = localStorage.getItem("boxingAthlete");
-    if (savedData) {
-        updateWelcomeMessage(JSON.parse(savedData));
+    const visitDisplay = document.querySelector("#visit-message");
+    if (visitDisplay) {
+        let visits = Number(localStorage.getItem("gymVisits")) || 0;
+        
+        if (visits === 0) {
+            visitDisplay.textContent = `Welcome! This is your first visit to the club.`;
+        } else {
+            visitDisplay.textContent = `Welcome back! You have visited us ${visits} times.`;
+        }
+        localStorage.setItem("gymVisits", visits + 1);
     }
 
-    
-    document.querySelector("#registerBtn").addEventListener("click", registerAthlete);
-    document.querySelector("#gearBtn").addEventListener("click", showGearList);
-    document.querySelector("#toggleTipsBtn").addEventListener("click", toggleTrainingTips);
+    const programContainer = document.querySelector("#program-cards");
+    if (programContainer) {
+        
+        gymPrograms.forEach(program => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <h3>${program.name}</h3>
+                <p><strong>Level:</strong> ${program.level}</p>
+                <p><em>${program.schedule}</em></p>
+            `;
+            programContainer.appendChild(card);
+        });
+    }
 });
