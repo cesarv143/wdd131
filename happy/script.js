@@ -19,6 +19,13 @@ const { damp, lerp, clamp } = THREE.MathUtils;
  *  y el mensaje principal de cumpleaños. Cambia estos textos libremente.
  * ==================================================================== */
 const BIRTHDAY_MESSAGE = 'Feliz cumpleaños';
+
+/*  Canción que suena al pulsar "Iniciar el viaje".
+ *  Pon tu archivo de música (por ejemplo cancion.mp3) dentro de la carpeta
+ *  "happy" y escribe aquí su nombre. También sirve una URL completa
+ *  (https://...). Si lo dejas vacío, la experiencia funciona sin música. */
+const SONG_SRC = 'sarry styles adore you the theorist.mp3';
+
 const WORDS = [
   'Hermosa', 'Inteligente', 'Valiente', 'Bondadosa',
   'Radiante', 'Divertida', 'Soñadora', 'Única',
@@ -305,12 +312,38 @@ function Overlay({ phase, onStart }) {
 /* --- App: máquina de estados --- */
 function App() {
   const [phase, setPhase] = useState('cover');
+  const [muted, setMuted] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const audioRef = useRef(null);
   const counts = useMemo(adaptiveCounts, []);
 
   const start = () => {
     setPhase('travel');
     setTimeout(() => setPhase('reveal'), 2600);
     setTimeout(() => setPhase('final'), 2600 + 3400);
+    // Reproducir la canción (el clic es el gesto que permite el audio)
+    const a = audioRef.current;
+    if (a && SONG_SRC) {
+      a.volume = 0.0;
+      a.play().then(() => {
+        setPlaying(true);
+        // Fundido de entrada del volumen
+        let v = 0;
+        const id = setInterval(() => {
+          v += 0.04;
+          if (v >= 0.75) { v = 0.75; clearInterval(id); }
+          if (audioRef.current) audioRef.current.volume = audioRef.current.muted ? 0 : v;
+        }, 80);
+      }).catch(() => { /* sin canción o bloqueada: seguimos sin audio */ });
+    }
+  };
+
+  const toggleMute = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    const next = !muted;
+    a.muted = next;
+    setMuted(next);
   };
 
   return html`
@@ -332,6 +365,12 @@ function App() {
       <//>
       <${Overlay} phase=${phase} onStart=${start} />
       <div class=${'hint' + (phase === 'final' ? ' show' : '')}>Arrastra para mirar alrededor</div>
+      ${SONG_SRC && html`<audio ref=${audioRef} src=${SONG_SRC} loop preload="auto" />`}
+      ${SONG_SRC && playing && html`
+        <button class="music-btn" onClick=${toggleMute}
+          aria-label=${muted ? 'Activar música' : 'Silenciar música'}>
+          ${muted ? '🔇' : '🔊'}
+        </button>`}
     <//>
   `;
 }
