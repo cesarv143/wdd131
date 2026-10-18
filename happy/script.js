@@ -15,21 +15,21 @@ const html = htm.bind(React.createElement);
 const { damp, lerp, clamp } = THREE.MathUtils;
 
 /* ======================================================================
- *  PERSONALIZA AQUÍ — palabras / cualidades que flotan junto a la galaxia
- *  y el mensaje principal de cumpleaños. Cambia estos textos libremente.
+ *  PERSONALIZA AQUÍ
  * ==================================================================== */
 const BIRTHDAY_MESSAGE = 'Feliz cumpleaños';
 
 /*  Canción que suena al pulsar "Iniciar el viaje".
- *  Pon tu archivo de música (por ejemplo cancion.mp3) dentro de la carpeta
- *  "happy" y escribe aquí su nombre. También sirve una URL completa
- *  (https://...). Si lo dejas vacío, la experiencia funciona sin música. */
-const SONG_SRC = 'sarry styles adore you the theorist.mp3';
+ *  Pon tu archivo (p.ej. cancion.mp3) dentro de la carpeta "happy" y escribe
+ *  aquí su nombre. También sirve una URL completa (https://...).
+ *  Déjalo vacío ('') para que no suene nada. */
+const SONG_SRC = 'cancion.mp3';
 
 const WORDS = [
   'Hermosa', 'Inteligente', 'Valiente', 'Bondadosa',
   'Radiante', 'Divertida', 'Soñadora', 'Única',
 ];
+/* ==================================================================== */
 
 /* --- Textura de brillo generada matemáticamente (sin recursos externos) --- */
 function makeGlowTexture() {
@@ -99,35 +99,39 @@ function galaxyGeometry(count) {
     positions[i * 3 + 1] = ry;
     positions[i * 3 + 2] = Math.sin(a) * r + rz;
     const col = inside.clone();
-    const t = r / radius;
-    if (t < 0.5) col.lerpColors(inside, mid, t / 0.5);
-    else col.lerpColors(mid, outside, (t - 0.5) / 0.5);
+    const tt = r / radius;
+    if (tt < 0.5) col.lerpColors(inside, mid, tt / 0.5);
+    else col.lerpColors(mid, outside, (tt - 0.5) / 0.5);
     colors[i * 3] = col.r; colors[i * 3 + 1] = col.g; colors[i * 3 + 2] = col.b;
   }
   return { positions, colors };
 }
 
-/* --- Corazón de partículas (curva paramétrica) elevado sobre la galaxia --- */
+/* --- Corazón de partículas (curva paramétrica), CENTRADO en el origen.
+ *     La animación lo hace emerger desde el núcleo de la galaxia. --- */
 function heartGeometry(count) {
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
-  const scale = 0.16, yOffset = 6.0;
+  const scale = 0.16;
   const pink = new THREE.Color('#ff4d8d');
   const white = new THREE.Color('#ffe0ec');
   for (let i = 0; i < count; i++) {
     const t = Math.random() * Math.PI * 2;
-    const fill = Math.pow(Math.random(), 0.5); // sesgo hacia el borde
+    const fill = Math.pow(Math.random(), 0.5);
     let x = 16 * Math.pow(Math.sin(t), 3);
     let y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
     x *= fill; y *= fill;
     positions[i * 3] = x * scale;
-    positions[i * 3 + 1] = y * scale + yOffset;
+    positions[i * 3 + 1] = y * scale;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 1.6;
     const col = white.clone().lerp(pink, Math.random());
     colors[i * 3] = col.r; colors[i * 3 + 1] = col.g; colors[i * 3 + 2] = col.b;
   }
   return { positions, colors };
 }
+
+/* Altura final del corazón sobre la galaxia */
+const HEART_RISE = 6.0;
 /* --- Objetivos de cámara por estado --- */
 const camTargets = {
   cover:  { pos: [0, 0, 18],  look: [0, 0, 0] },
@@ -142,7 +146,6 @@ function Experience({ phase, counts }) {
   const galaxyRef = useRef();
   const heartRef = useRef();
   const coreRef = useRef();
-  const wordsRef = useRef();
   const phaseRef = useRef(phase);
   const tStart = useRef(0);
   const lookRef = useRef(new THREE.Vector3(0, 0, 0));
@@ -151,6 +154,8 @@ function Experience({ phase, counts }) {
   const star = useMemo(() => starGeometry(counts.stars), [counts]);
   const gal = useMemo(() => galaxyGeometry(counts.galaxy), [counts]);
   const hrt = useMemo(() => heartGeometry(counts.heart), [counts]);
+  // Posiciones finales del corazón para interpolar el "surgir"
+  const heartTarget = useMemo(() => hrt.positions.slice(), [hrt]);
 
   useEffect(() => {
     phaseRef.current = phase;
@@ -195,19 +200,26 @@ function Experience({ phase, counts }) {
       if (coreRef.current) coreRef.current.scale.setScalar(2.6 + Math.sin(t * 2) * 0.35);
     }
 
-    // Palabras flotantes girando lentamente alrededor de la galaxia
-    if (wordsRef.current) wordsRef.current.rotation.y += delta * 0.05;
-
-    // Corazón de partículas
+    // Corazón de partículas: EMERGE desde el núcleo de la galaxia y se eleva
     const hr = heartRef.current;
     if (hr) {
-      hr.children.forEach((ch) => {
-        if (ch.material) ch.material.opacity = damp(ch.material.opacity, show ? 1 : 0, 2.2, delta);
-      });
-      const sc = damp(hr.scale.x, show ? 1 : 0.3, 2.4, delta);
-      hr.scale.setScalar(sc);
-      hr.position.y = Math.sin(t * 0.8) * 0.3;
+      let prog;
+      if (ph === 'final') prog = 1;
+      else if (ph === 'reveal') prog = clamp((local - 0.6) / 2.4, 0, 1);
+      else prog = 0;
+      const eased = prog * prog * (3 - 2 * prog); // smoothstep
+
+      // Las partículas parten del centro (0,0,0) y se abren hacia la forma
+      const lp = hr.children[0].geometry.attributes.position.array;
+      for (let i = 0; i < lp.length; i++) lp[i] = heartTarget[i] * eased;
+      hr.children[0].geometry.attributes.position.needsUpdate = true;
+
+      // Se eleva desde la galaxia hasta su altura final, con leve flotación
+      hr.position.y = HEART_RISE * eased + Math.sin(t * 0.8) * 0.3 * eased;
       hr.rotation.y += delta * 0.12;
+      hr.children.forEach((ch) => {
+        if (ch.material) ch.material.opacity = damp(ch.material.opacity, show ? 1 : 0, 2.4, delta);
+      });
     }
 
     // Cámara (controlada hasta que el usuario arrastra en 'final')
@@ -255,7 +267,7 @@ function Experience({ phase, counts }) {
 
       ${html`<${Words} phase=${phase} />`}
 
-      <group ref=${heartRef} scale=${[0.3, 0.3, 0.3]}>
+      <group ref=${heartRef} scale=${[1, 1, 1]}>
         <points>
           <bufferGeometry>
             <bufferAttribute attach="attributes-position" args=${[hrt.positions, 3]} />
@@ -309,7 +321,7 @@ function Overlay({ phase, onStart }) {
   `;
 }
 
-/* --- App: máquina de estados --- */
+/* --- App: máquina de estados + música --- */
 function App() {
   const [phase, setPhase] = useState('cover');
   const [muted, setMuted] = useState(false);
@@ -321,13 +333,11 @@ function App() {
     setPhase('travel');
     setTimeout(() => setPhase('reveal'), 2600);
     setTimeout(() => setPhase('final'), 2600 + 3400);
-    // Reproducir la canción (el clic es el gesto que permite el audio)
     const a = audioRef.current;
     if (a && SONG_SRC) {
       a.volume = 0.0;
       a.play().then(() => {
         setPlaying(true);
-        // Fundido de entrada del volumen
         let v = 0;
         const id = setInterval(() => {
           v += 0.04;
@@ -376,4 +386,3 @@ function App() {
 }
 
 createRoot(document.getElementById('root')).render(html`<${App} />`);
-
