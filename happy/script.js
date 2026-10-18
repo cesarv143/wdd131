@@ -1,7 +1,5 @@
 /*
  * Para ti — experiencia 3D de partículas.
- * Three.js integrado con React Three Fiber (sin JSX: usamos htm).
- * Todo el render ocurre en el cliente (sin SSR del lienzo).
  * Máquina de estados: 'cover' -> 'travel' -> 'reveal' -> 'final'.
  */
 import React, { useRef, useMemo, useState, useEffect } from 'react';
@@ -15,14 +13,12 @@ const html = htm.bind(React.createElement);
 const { damp, lerp, clamp } = THREE.MathUtils;
 
 /* ======================================================================
- *  PERSONALIZA AQUÍ
+ *  TITULO Y PALABRAS
  * ==================================================================== */
 const BIRTHDAY_MESSAGE = 'Feliz cumpleaños';
 
 /*  Canción que suena al pulsar "Iniciar el viaje".
- *  Pon tu archivo (p.ej. cancion.mp3) dentro de la carpeta "happy" y escribe
- *  aquí su nombre. También sirve una URL completa (https://...).
- *  Déjalo vacío ('') para que no suene nada. */
+ */
 const SONG_SRC = 'sarry styles adore you the theorist.mp3';
 
 const WORDS = [
@@ -31,7 +27,7 @@ const WORDS = [
 ];
 /* ==================================================================== */
 
-/* --- Textura de brillo generada matemáticamente (sin recursos externos) --- */
+/* --- Textura de brillo generada matemáticamente --- */
 function makeGlowTexture() {
   const size = 128;
   const c = document.createElement('canvas');
@@ -107,8 +103,8 @@ function galaxyGeometry(count) {
   return { positions, colors };
 }
 
-/* --- Corazón de partículas (curva paramétrica), CENTRADO en el origen.
- *     La animación lo hace emerger desde el núcleo de la galaxia. --- */
+/* --- Corazón de partículas (curva paramétrica), CENTRADO.
+ *     emerge desde el núcleo de la galaxia. --- */
 function heartGeometry(count) {
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
@@ -200,7 +196,7 @@ function Experience({ phase, counts }) {
       if (coreRef.current) coreRef.current.scale.setScalar(2.6 + Math.sin(t * 2) * 0.35);
     }
 
-    // Corazón de partículas: EMERGE desde el núcleo de la galaxia y se eleva
+    // Corazón de partículas: EMERGE desde el núcleo de la galaxia 
     const hr = heartRef.current;
     if (hr) {
       let prog;
@@ -280,7 +276,7 @@ function Experience({ phase, counts }) {
   `;
 }
 
-/* --- Palabras-cualidad + mensaje de cumpleaños ancladas en 3D --- */
+/* --- Palabras-cualidad + mensaje de cumpleaños ancladas --- */
 function Words({ phase }) {
   const show = phase === 'reveal' || phase === 'final';
   const groupRef = useRef();
