@@ -69,7 +69,7 @@ canvas{
 .title{
   font-size:clamp(48px,16vw,140px);
   font-weight:800;
-  line-height:1;
+  line-height:1.3;
   letter-spacing:-0.02em;
   background:linear-gradient(120deg,#fff 0%,var(--rosa) 45%,var(--violeta) 100%);
   -webkit-background-clip:text;

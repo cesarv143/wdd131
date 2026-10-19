@@ -311,9 +311,9 @@ function Overlay({ phase, onStart }) {
   return html`
     <div class=${'overlay' + (hidden ? ' hidden' : '')}>
       <p class="eyebrow">Un universo hecho de luz</p>
-      <h1 class="title">Para ti</h1>
+      <h1 class="title">Para ti Nallely</h1>
       <p class="subtitle">Dicen que el universo es demasiado grande para recorrerlo a solas, pero hoy quise construir uno solo para ti.</p>
-      <button class="start-btn" onClick=${onStart} aria-label="Iniciar la animación">Iniciar el viaje</button>
+      <button class="start-btn" onClick=${onStart} aria-label="Iniciar la animación">Nuestro Universo</button>
     </div>
   `;
 }
