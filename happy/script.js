@@ -24,7 +24,8 @@ const SONG_SRC = 'sarry styles adore you the theorist.mp3';
 const WORDS = [
   'Hermosa', 'Inteligente', 'Valiente', 'Bondadosa',
   'Radiante', 'Divertida', 'Soñadora', 'Única', 'Trabajadora', 'Caritativa',
-  'Mi Inspiración', 'La razón por la que este universo cobra sentido',
+  'Mi Inspiración', 'La razón por la que este universo cobra sentido', 
+  'Mi persona favorita',
 ];
 /* ==================================================================== */
 
